@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Image from "../Image/Index";
 import { supabase } from '../../../supabaseClient';
+import logo from "../../assets/Logo.jpeg"
 
 
 export default function App() {
@@ -79,13 +80,12 @@ export default function App() {
         <div className="bg-gradient-to-br from-gray-200 via-gray-400 to-gray-600 h-full flex justify-center items-center">
             <section className="">
                 <div className="container px-4 space-y-12 lg:space-y-16">
-                    <div className="space-y-3">
-                        <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-                            Vote for your favorite icon
+                <div className="relative bg-gradient-to-r from-[#e8f2f3] to-[#cadce6] flex items-center justify-between h-20 rounded-full px-4">
+    <img className="absolute left-0 h-20 rounded-full" src={logo} alt="" srcset="" /> 
+    <h1 class="text-4xl font-bold tracking-tighter sm:text-3xl md:text-4xl text-center flex-grow">
+       
+                        Choisissez votre Icône préféré.
                         </h1>
-                        <p className="text-xl text-gray-500 md:text-2xl/relaxed sm:text-xl/relaxed dark:text-gray-400">
-                            Help us choose the best icon for our app
-                        </p>
                     </div>
                     <div className="grid grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-4 md:gap-10">
                         {images.map(image => (
