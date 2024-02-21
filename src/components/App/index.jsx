@@ -7,7 +7,7 @@ import Cookies from 'js-cookie'; // Make sure to install js-cookie
 export default function App() {
     const [status, setStatus] = useState({});
     const [images, setImages] = useState([]);
-
+    const [showTopVoted, setShowTopVoted] = useState(false);
     useEffect(() => {
         const fetchImages = async () => {
             let { data, error } = await supabase
@@ -72,6 +72,13 @@ export default function App() {
         if (error) console.error('Error updating image status:', error);
     };
 
+    const toggleShowTopVoted = () => {
+        setShowTopVoted(!showTopVoted);
+    };
+
+    // Find top 3 voted images
+    const topVotedImages = images.slice().sort((a, b) => (b.votes || 0) - (a.votes || 0)).slice(0, 3);
+
     return (
         <div className="bg-gradient-to-br from-gray-200 via-gray-400 to-gray-600 h-full flex justify-center items-center">
             <section>
@@ -81,8 +88,33 @@ export default function App() {
                         <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tighter text-center flex-grow">
     Choisissez votre icône préféré.
 </h1>
+<button 
+  onClick={toggleShowTopVoted} 
+  className="absolute right-0 w-20 h-20 bg-gray-950 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg"
+>
+  Top 3
+</button>
 
                     </div>
+                    {showTopVoted && (
+                    <div className="absolute top-0 left-0 right-0 bottom-0 bg-white bg-opacity-75 flex flex-col items-center justify-center z-10">
+                        <h2 className="text-2xl font-bold mb-4">Top 3 Voted Images</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            {topVotedImages.map((image) => (
+                                <Image 
+                                    key={image.id}
+                                    src={image.url}
+                                    alt={image.title || 'Top Voted Image'}
+                                    status={status[image.id]}
+                                    updateStatus={(newStatus) => updateStatus(image.id, newStatus)}
+                                />
+                            ))}
+                        </div>
+                        <button onClick={toggleShowTopVoted} className="mt-4 px-4 py-2 bg-red-500 text-white rounded-full">
+                            Close
+                        </button>
+                    </div>
+                )}
                     <div className="grid grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-4 md:gap-10">
                         {images.map(image => (
                             <Image 

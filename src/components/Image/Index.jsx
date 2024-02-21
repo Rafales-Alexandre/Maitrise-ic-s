@@ -7,7 +7,7 @@ export default function Image({ src, alt, status, updateStatus }) {
                     onClick={() => updateStatus('like')}
                     aria-label="Like"
                     className={`focus:outline-none rounded-full p-2 text-white ${
-                        status === 'like' ? 'bg-red-500' : 'bg-gray-200'
+                        status === 'like' ? 'bg-gray-200' : 'bg-gray-200'
                     }`}
                 >
                     {status === 'like' ? '❤️' : '🤍'}
@@ -16,7 +16,7 @@ export default function Image({ src, alt, status, updateStatus }) {
                     onClick={() => updateStatus('dislike')}
                     aria-label="Dislike"
                     className={`focus:outline-none rounded-full p-2 text-white ${
-                        status === 'dislike' ? 'bg-red-500' : 'bg-gray-200'
+                        status === 'dislike' ? 'bg-gray-200' : 'bg-gray-200'
                     }`}
                 >
                     {status === 'dislike' ? '❌' : '✖️'}
