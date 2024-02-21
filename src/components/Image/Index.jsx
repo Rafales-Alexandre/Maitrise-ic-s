@@ -16,7 +16,7 @@ export default function Image({ src, alt, status, updateStatus,votes, counter,ro
                 <button
                     onClick={() => updateStatus('like')}
                     aria-label="Like"
-                    className={`focus:outline-none rounded-full p-2 text-white ${
+                    className={`focus:outline-none rounded-full p-2 h-10 w-10 text-white ${
                         status === 'like' ? 'bg-gray-200' : 'bg-gray-200'
                     }`}
                 >
@@ -25,7 +25,7 @@ export default function Image({ src, alt, status, updateStatus,votes, counter,ro
                 <button
                     onClick={() => updateStatus('dislike')}
                     aria-label="Dislike"
-                    className={`focus:outline-none rounded-full p-2 text-white ${
+                    className={`focus:outline-none rounded-full p-2 h-10 w-10 text-white ${
                         status === 'dislike' ? 'bg-gray-200' : 'bg-gray-200'
                     }`}
                 >
