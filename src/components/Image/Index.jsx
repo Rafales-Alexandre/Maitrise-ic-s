@@ -1,8 +1,18 @@
-export default function Image({ src, alt, status, updateStatus }) {
+export default function Image({ src, alt, status, updateStatus,votes, counter,rounded }) {
     return (
         <div className="relative w-full h-full">
-            <img src={src} alt={alt} className="w-full h-full object-cover rounded-lg" />
-            <div className="absolute bottom-0 left-0 right-0 p-3 flex justify-between items-end bg-gradient-to-t from-black to-transparent rounded-lg">
+            {!counter && (
+                    <>
+                    <div class="absolute top-0 bg-white rounded-full w-10 h-10 flex justify-center items-center rounded-full">
+  ❤️ {votes}
+</div>
+                    </>
+                )}
+            <img src={src} alt={alt} className={`w-full h-full object-cover ${rounded?'rounded-full':'rounded-lg'}`} />
+            <div className="absolute bottom-0 left-0 right-0 p-3 flex justify-between items-end  rounded-lg">
+                
+                {counter && (
+                    <>
                 <button
                     onClick={() => updateStatus('like')}
                     aria-label="Like"
@@ -20,7 +30,10 @@ export default function Image({ src, alt, status, updateStatus }) {
                     }`}
                 >
                     {status === 'dislike' ? '❌' : '✖️'}
-                </button>
+                </button>  </>
+                )
+                }
+                
             </div>
         </div>
     );

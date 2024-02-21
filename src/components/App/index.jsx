@@ -85,12 +85,12 @@ export default function App() {
                 <div className="container px-4 space-y-12 lg:space-y-16">
                     <div className="relative bg-gradient-to-r from-[#e8f2f3] to-[#cadce6] flex items-center justify-between h-20 rounded-full px-4">
                         <img className="absolute left-0 h-12 sm:h-20 rounded-full" src={logo} alt="" />
-                        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tighter text-center flex-grow z-10">
+                        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tighter text-center flex-grow z-10 w-1/2">
     Choisissez votre icône préféré.
 </h1>
 <button 
   onClick={toggleShowTopVoted} 
-  className="absolute right-0 w-10 h-10 sm:w-20 sm:h-20 bg-gray-900 text-white rounded-full flex items-center justify-center text-xs sm:text-sm font-bold shadow-lg"
+  className="absolute right-0 w-10 h-10 sm:w-20 sm:h-20 bg-gray-900 text-white rounded-full flex items-center justify-center text-xs sm:text-sm font-bold shadow-lg z-20"
 >
   Top 3
 </button>
@@ -98,24 +98,37 @@ export default function App() {
 
                     </div>
                     {showTopVoted && (
-                    <div className="absolute top-0 left-0 right-0 bottom-0 bg-white bg-opacity-75 flex flex-col items-center justify-center z-10">
-                        <h2 className="text-2xl font-bold mb-4">Top 3 Voted Images</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            {topVotedImages.map((image) => (
-                                <Image 
-                                    key={image.id}
-                                    src={image.url}
-                                    alt={image.title || 'Top Voted Image'}
-                                    status={status[image.id]}
-                                    updateStatus={(newStatus) => updateStatus(image.id, newStatus)}
-                                />
-                            ))}
-                        </div>
-                        <button onClick={toggleShowTopVoted} className="mt-4 px-4 py-2 bg-red-500 text-white rounded-full">
-                            Close
-                        </button>
-                    </div>
-                )}
+  <div className="absolute top-0 left-0 right-0 bottom-0 bg-white bg-opacity-75 flex flex-col items-center justify-center z-50">
+      <h2 className="text-2xl font-bold mb-4">Top 3</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {topVotedImages.map((image, index) => {
+              let borderColorClass = '';
+              if (index === 0) borderColorClass = 'border-8 border-gold'; // Gold border for 1st
+              else if (index === 1) borderColorClass = 'border-8 border-silver'; // Silver border for 2nd
+              else if (index === 2) borderColorClass = 'border-8 border-bronze'; // Bronze border for 3rd
+
+              return (
+                  <div className={`${borderColorClass} rounded-full`}>
+                      <Image 
+                          key={image.id}
+                          src={image.url}
+                          alt={image.title || 'Top Voted Image'}
+                          status={status[image.id]}
+                          updateStatus={(newStatus) => updateStatus(image.id, newStatus)}
+                          counter={false}
+                          votes={image.votes}
+                          rounded={true}
+                      />
+                  </div>
+              );
+          })}
+      </div>
+      <button onClick={toggleShowTopVoted} className="mt-4 px-4 py-2 bg-red-500 text-white rounded-full">
+          Close
+      </button>
+  </div>
+)}
+
                     <div className="grid grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-4 md:gap-10">
                         {images.map(image => (
                             <Image 
@@ -124,6 +137,7 @@ export default function App() {
                                 alt={image.title || 'Image'}
                                 status={status[image.id]}
                                 updateStatus={(newStatus) => updateStatus(image.id, newStatus)}
+                                counter={true}
                             />
                         ))}
                     </div>
