@@ -6,7 +6,7 @@ export default function Image({ src, alt, status, updateStatus }) {
                 <button
                     onClick={() => updateStatus('like')}
                     aria-label="Like"
-                    className={`focus:outline-none rounded-full p-2 h-20 text-white ${
+                    className={`focus:outline-none rounded-full p-2 h-5 w-5 text-white ${
                         status === 'like' ? 'bg-gray-200' : 'bg-gray-200'
                     }`}
                 >
