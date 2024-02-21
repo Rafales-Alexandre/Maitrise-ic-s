@@ -98,36 +98,39 @@ export default function App() {
 
                     </div>
                     {showTopVoted && (
-  <div className="absolute top-0 left-0 right-0 bottom-0 bg-white bg-opacity-75 flex flex-col items-center justify-center z-50">
-      <h2 className="text-2xl font-bold mb-4">Top 3</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {topVotedImages.map((image, index) => {
-              let borderColorClass = '';
-              if (index === 0) borderColorClass = 'border-8 border-gold'; // Gold border for 1st
-              else if (index === 1) borderColorClass = 'border-8 border-silver'; // Silver border for 2nd
-              else if (index === 2) borderColorClass = 'border-8 border-bronze'; // Bronze border for 3rd
+  <div className="absolute inset-13 bg-white bg-opacity-75 flex flex-col items-center justify-center z-50 p-2">
+    <h2 className="text-lg md:text-2xl font-bold mb-1 md:mb-4">Top 3</h2>
+    <div className="grid grid-cols-1 gap-1 md:grid-cols-3 md:gap-4">
+        {topVotedImages.map((image, index) => {
+            let borderColorClass = '';
+            // Further reduced border sizes and used more compact class naming for borders
+            if (index === 0) borderColorClass = 'border-2 md:border-8 border-gold'; // Adjust for mobile
+            else if (index === 1) borderColorClass = 'border-2 md:border-8 border-silver'; // Adjust for mobile
+            else if (index === 2) borderColorClass = 'border-2 md:border-8 border-bronze'; // Adjust for mobile
 
-              return (
-                  <div className={`${borderColorClass} rounded-full`}>
-                      <Image 
-                          key={image.id}
-                          src={image.url}
-                          alt={image.title || 'Top Voted Image'}
-                          status={status[image.id]}
-                          updateStatus={(newStatus) => updateStatus(image.id, newStatus)}
-                          counter={false}
-                          votes={image.votes}
-                          rounded={true}
-                      />
-                  </div>
-              );
-          })}
-      </div>
-      <button onClick={toggleShowTopVoted} className="mt-4 px-4 py-2 bg-red-500 text-white rounded-full">
-          Close
-      </button>
+            return (
+                <div className={`${borderColorClass} rounded-full p-1`}> {/* Reduced padding */}
+                    <Image 
+                        key={image.id}
+                        src={image.url}
+                        alt={image.title || 'Top Voted Image'}
+                        status={status[image.id]}
+                        updateStatus={(newStatus) => updateStatus(image.id, newStatus)}
+                        counter={false}
+                        votes={image.votes}
+                        rounded={true}
+                    />
+                </div>
+            );
+        })}
+    </div>
+    <button onClick={toggleShowTopVoted} className="mt-1 px-2 py-1 bg-red-500 text-white rounded-full text-xs md:mt-4 md:px-4 md:py-2 md:text-base">
+        Close
+    </button>
   </div>
 )}
+
+
 
                     <div className="grid grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-4 md:gap-10">
                         {images.map(image => (
