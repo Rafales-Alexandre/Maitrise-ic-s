@@ -78,9 +78,10 @@ export default function App() {
                 <div className="container px-4 space-y-12 lg:space-y-16">
                     <div className="relative bg-gradient-to-r from-[#e8f2f3] to-[#cadce6] flex items-center justify-between h-20 rounded-full px-4">
                         <img className="absolute left-0 h-20 rounded-full" src={logo} alt="" />
-                        <h1 className="text-4xl font-bold tracking-tighter sm:text-3xl md:text-4xl text-center flex-grow">
-                            Choisissez votre Icône préféré.
-                        </h1>
+                        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tighter text-center flex-grow">
+    Choisissez votre icône préféré.
+</h1>
+
                     </div>
                     <div className="grid grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-4 md:gap-10">
                         {images.map(image => (
