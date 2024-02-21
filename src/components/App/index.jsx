@@ -84,16 +84,17 @@ export default function App() {
             <section>
                 <div className="container px-4 space-y-12 lg:space-y-16">
                     <div className="relative bg-gradient-to-r from-[#e8f2f3] to-[#cadce6] flex items-center justify-between h-20 rounded-full px-4">
-                        <img className="absolute left-0 h-20 rounded-full" src={logo} alt="" />
-                        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tighter text-center flex-grow">
+                        <img className="absolute left-0 h-12 sm:h-20 rounded-full" src={logo} alt="" />
+                        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tighter text-center flex-grow z-10">
     Choisissez votre icône préféré.
 </h1>
 <button 
   onClick={toggleShowTopVoted} 
-  className="absolute right-0 w-20 h-20 bg-gray-950 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg"
+  className="absolute right-0 w-10 h-10 sm:w-20 sm:h-20 bg-gray-900 text-white rounded-full flex items-center justify-center text-xs sm:text-sm font-bold shadow-lg"
 >
   Top 3
 </button>
+
 
                     </div>
                     {showTopVoted && (
