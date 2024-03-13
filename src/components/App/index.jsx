@@ -98,7 +98,7 @@ export default function App() {
 
                     </div>
                     {showTopVoted && (
-  <div className="absolute inset-13 bg-white bg-opacity-75 flex flex-col items-center justify-center z-50 p-2">
+  <div className="absolute inset-16 bg-white bg-opacity-75 flex flex-col items-center justify-center z-50 p-2">
     <h2 className="text-lg md:text-2xl font-bold mb-1 md:mb-4">Top 3</h2>
     <div className="grid grid-cols-1 gap-1 md:grid-cols-3 md:gap-4">
         {topVotedImages.map((image, index) => {
