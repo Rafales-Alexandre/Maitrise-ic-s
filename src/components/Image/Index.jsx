@@ -1,9 +1,10 @@
+// Image.jsx
 export default function Image({ src, alt, status, updateStatus,votes, counter,rounded }) {
     return (
         <div className="relative w-full h-full">
             {!counter && (
                     <>
-                    <div class="absolute top-0 bg-white rounded-full w-10 h-10 flex justify-center items-center rounded-full">
+                    <div className="absolute top-0 bg-white rounded-full w-10 h-10 flex justify-center items-center rounded-full">
   ❤️ {votes}
 </div>
                     </>
